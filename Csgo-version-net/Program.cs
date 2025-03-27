@@ -16,6 +16,7 @@ namespace Csgo_version_net
         {
             Console.Title = "CS:GO";
 
+            // Megnézi hogy windowson fut-e.
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 Console.WriteLine("Ez a rendszer nem támogatott.");
@@ -23,6 +24,8 @@ namespace Csgo_version_net
                 return;
             }
             Console.WriteLine("Verzió átírása...");
+
+            // Registryből kikéri a steamnek a telepítési helyét.
             RegistryKey steamrk = Registry.CurrentUser.OpenSubKey("Software\\Valve\\Steam", false);
             if (steamrk == null)
             {
@@ -43,17 +46,42 @@ namespace Csgo_version_net
             Console.WriteLine("");
             try
             {
+                // Fájl beolvasása (steam.inf)
                 var allLines = File.ReadAllLines(steamInf);
                 Console.WriteLine("(1) " + allLines[0] + " --> " + "ClientVersion=2000258");
                 Console.WriteLine("(2) " + allLines[1] + " --> " + "ServerVersion=2000258");
                 allLines[0] = "ClientVersion=2000258";
                 allLines[1] = "ServerVersion=2000258";
+
+                // Fájl átírása
                 File.WriteAllLines(steamInf, allLines);
                 Console.WriteLine("\nVerzió átírva.\n\n -> Kérlek válaszd ki a \"Play Legacy Version of CS:GO\"-t!");
+
+                // Játék elinditása
                 Process.Start("steam://launch/730/dialog");
+
                 Thread.Sleep(850);
                 MessageBox.Show("Kérlek válaszd ki a CS:GO-t és inditsd el!", "cshungary.fun");
                 Thread.Sleep(200);
+                Console.WriteLine("Valami hiba lépett fel.");
+
+                //Letörli saját magát a program
+                try
+                {
+                    string currentFile = Process.GetCurrentProcess().MainModule.FileName;
+                    Process.Start(new ProcessStartInfo()
+                    {
+                        Arguments = "/C choice /C Y /N /D Y /T 2 & Del \"" + currentFile + "\"",
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        CreateNoWindow = true,
+                        FileName = "cmd.exe"
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.ReadKey();
+                }
             }
             catch (Exception ex)
             {
