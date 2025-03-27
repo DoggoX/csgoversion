@@ -1,0 +1,7 @@
+C:\Users\Admin\source\repos\Csgo-version-net\Csgo-version-net\obj\Debug\Csgo-version-net.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Csgo-version-net\Csgo-version-net\obj\Debug\Csgo-version-net.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Csgo-version-net\Csgo-version-net\bin\Debug\Csgo-Version.exe.config
+C:\Users\Admin\source\repos\Csgo-version-net\Csgo-version-net\bin\Debug\Csgo-Version.exe
+C:\Users\Admin\source\repos\Csgo-version-net\Csgo-version-net\bin\Debug\Csgo-Version.pdb
+C:\Users\Admin\source\repos\Csgo-version-net\Csgo-version-net\obj\Debug\Csgo-Version.exe
+C:\Users\Admin\source\repos\Csgo-version-net\Csgo-version-net\obj\Debug\Csgo-Version.pdb
